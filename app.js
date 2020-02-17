@@ -1,7 +1,9 @@
 const express = require('express');
-var port = process.env.PORT || 9000;
+var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 const fetch = require('node-fetch');
+var os = require("os");
+var hostname = os.hostname();
 
 const app = express();
 
@@ -10,6 +12,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+app.get('/version', (req, res) => {
+    console.log(hostname);
+    res.json({ version: '1.2', hostname: hostname});
+})
 
 app.get('/users/:id', (req, res) => {
     const username = req.params.id//'huadeang';
