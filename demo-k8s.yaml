@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-node-lb
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 9000
+    protocol: TCP
+    targetPort: 9000
+  selector:
+      app: demo-node-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-node-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-node-app
+  template:
+    metadata:
+      labels:
+        app: demo-node-app
+    spec:
+      containers:
+      - name: demo-node-app
+        image: sangad.azurecr.io/nodedemo 
+        ports:
+        - containerPort: 9000
