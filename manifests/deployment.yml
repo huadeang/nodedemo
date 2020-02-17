@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: nodedemo 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nodedemo 
+    spec:
+      containers:
+        - name: nodedemo 
+          image: sangad.azurecr.io/nodedemo
+          ports:
+          - containerPort: 9000
