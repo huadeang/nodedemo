@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 
 app.get('/version', (req, res) => {
     console.log(hostname);
-    res.json({ version: '1.8', hostname: hostname});
+    res.json({ version: '1.9', hostname: hostname});
 })
 
 app.get('/users/:id', (req, res) => {
