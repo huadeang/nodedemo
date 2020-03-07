@@ -1,11 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Check Out Git') {
-      steps {
-        git(url: 'https://github.com/huadeang/nodedemo.git', branch: 'master')
-      }
-    }
+    
 
     stage('Buid Image') {
       steps {
