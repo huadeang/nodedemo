@@ -15,18 +15,16 @@ pipeline {
     stage('Deploy Image') {
       steps {
         script {
-          // docker.withRegistry( '', registryCredential ) {
-          //   dockerImage.push()
-          // }
           sh "docker push $registry:$latest"
         }
-
       }
     }
 
     stage('Deployment K8s') {
         steps {
+          script {
             sh 'kubectl apply -f aws-demo-k8s.yaml';
+          }
         }
     }
 
@@ -35,7 +33,6 @@ pipeline {
         script {
           sh "docker rmi $registry:$latest"
         }
-
       }
     }
 
