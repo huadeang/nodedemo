@@ -15,7 +15,7 @@ pipeline {
     stage('Deploy Image') {
       steps {
         script {
-          sh "docker push $registry:$latest"
+          sh "docker push $registry"+":latest"
         }
       }
     }
@@ -31,7 +31,7 @@ pipeline {
     stage('Remove Unused docker image') {
       steps {
         script {
-          sh "docker rmi $registry:$latest"
+          sh "docker rmi $registry"+":latest"
         }
       }
     }
