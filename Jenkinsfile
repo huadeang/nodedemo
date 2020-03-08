@@ -6,7 +6,7 @@ pipeline {
     stage('Buid Image') {
       steps {
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry + ":latest"
         }
 
       }
@@ -23,10 +23,16 @@ pipeline {
       }
     }
 
+    stage('Deployment K8s') {
+        steps {
+            sh 'kubectl apply -f aws-demo-k8s.yaml';
+        }
+    }
+
     stage('Remove Unused docker image') {
       steps {
         script {
-          sh "docker rmi $registry:$BUILD_NUMBER"
+          sh "docker rmi $registry:$latest"
         }
 
       }
@@ -34,8 +40,8 @@ pipeline {
 
   }
   environment {
-    registry = 'sangad/nodedemo'
-    registryCredential = 'dockerhub'
+    registry = '778817355209.dkr.ecr.ap-southeast-1.amazonaws.com/rsm-projectku-dev'
+    registryCredential = 'aws-sanbox'
     dockerImage = ''
   }
 }
