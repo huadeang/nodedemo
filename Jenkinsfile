@@ -41,7 +41,7 @@ pipeline {
   }
   environment {
     registry = '778817355209.dkr.ecr.aap-southeast-1.amazonaws.com/rsm-projectku-dev'
-    registryCredential = 'aws-sanbox-AP_SOUTHEAST_1'
+    registryCredential = 'dockerhub'
     dockerImage = ''
   }
 }
