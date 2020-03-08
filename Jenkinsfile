@@ -23,7 +23,7 @@ pipeline {
     stage('Deployment K8s') {
         steps {
           script {
-            sh 'kubectl apply -f aws-demo-k8s.yaml';
+            sh '/usr/local/bin/kubectl apply -f aws-demo-k8s.yaml';
           }
         }
     }
